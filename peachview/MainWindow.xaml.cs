@@ -33,7 +33,8 @@ namespace peachview
 
         private string[] _args;
         private string[] _imgList;
-        private int _index = 0;
+        private int _index;
+        private int _delta=0;
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -46,7 +47,7 @@ namespace peachview
                 {
                     string parent = System.IO.Path.GetDirectoryName(this._args[0]);
                     _imgList = (from f in Directory.GetFiles(parent)
-                                where f.EndsWith(".jpg") || f.EndsWith(".jpeg") || f.EndsWith(".png") || f.EndsWith(".bmp")
+                                where f.EndsWith(".jpg") || f.EndsWith(".jpeg") || f.EndsWith(".png") || f.EndsWith(".bmp") || f.EndsWith(".gif")
                                 select f).ToArray();
                     BitmapImage image = new BitmapImage(new Uri(this._args[0], UriKind.Absolute));
                     DisplayImage(image);
@@ -60,11 +61,22 @@ namespace peachview
 
         private void DisplayImage(BitmapImage image)
         {
-            this.ImgMain.Source = image;
             System.Windows.Forms.Screen screen = Screen.PrimaryScreen;
             System.Drawing.Rectangle rct = screen.Bounds;
             this.Width = image.PixelWidth > rct.Width ? rct.Width : image.PixelWidth;
             this.Height = image.PixelHeight > rct.Height ? rct.Height : image.PixelHeight;
+            if (image.UriSource.AbsolutePath.EndsWith(".gif"))
+            {
+                this.GifImage.GifSource = image.UriSource.AbsolutePath;
+                this.GifImage.Visibility=Visibility.Visible;
+                this.ImgMain.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                this.ImgMain.Source = image; 
+                this.GifImage.Visibility = Visibility.Collapsed;
+                this.ImgMain.Visibility = Visibility.Visible;
+            }
             this.Top = (rct.Height - this.Height) / 2;
             this.Left = (rct.Width - this.Width) / 2;
             this.Topmost = true;
@@ -91,6 +103,11 @@ namespace peachview
         private void MainWindow_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void MainWindow_OnMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            //e.Delta
         }
     }
 }

@@ -11,3 +11,5 @@ E:\self\git\peachview\peachview\obj\Release\peachview.Properties.Resources.resou
 E:\self\git\peachview\peachview\obj\Release\peachview.csproj.GenerateResource.Cache
 E:\self\git\peachview\peachview\obj\Release\peachview.exe
 E:\self\git\peachview\peachview\obj\Release\peachview.pdb
+E:\self\git\peachview\peachview\obj\Release\GeneratedInternalTypeHelper.g.cs
+E:\self\git\peachview\peachview\obj\Release\peachview_MarkupCompile.lref

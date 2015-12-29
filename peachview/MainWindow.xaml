@@ -1,13 +1,19 @@
 ﻿<Window x:Class="peachview.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:peachview="clr-namespace:peachview"
         Title="MainWindow" Height="350" Width="525" 
         WindowStyle="None" Background="{x:Null}" AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Icon="images/桃子32×32.ico"
-        Loaded="MainWindow_OnLoaded" KeyUp="MainWindow_OnKeyUp" MouseLeftButtonDown="MainWindow_OnMouseLeftButtonDown">
+        Loaded="MainWindow_OnLoaded" 
+        KeyUp="MainWindow_OnKeyUp"  
+        MouseWheel="MainWindow_OnMouseWheel"
+        MouseLeftButtonDown="MainWindow_OnMouseLeftButtonDown">
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <Image Name="ImgMain" HorizontalAlignment="Stretch" 
+        <Image Name="ImgMain" HorizontalAlignment="Stretch" Stretch="None"
                Source="images/demo.jpg" VerticalAlignment="Stretch"></Image>
+        <peachview:GifImage x:Name="GifImage" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                            Stretch="None" AutoStart="True" />
     </Grid>
 </Window>
