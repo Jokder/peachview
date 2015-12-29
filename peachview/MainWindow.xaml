@@ -1,0 +1,13 @@
+﻿<Window x:Class="peachview.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" 
+        WindowStyle="None" Background="{x:Null}" AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Icon="images/桃子32×32.ico"
+        Loaded="MainWindow_OnLoaded">
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Image Name="ImgMain" HorizontalAlignment="Stretch" 
+               Source="images/demo.jpg" VerticalAlignment="Stretch"></Image>
+    </Grid>
+</Window>

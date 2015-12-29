@@ -1,0 +1,13 @@
+E:\self\git\peachview\peachview\bin\Release\peachview.exe.config
+E:\self\git\peachview\peachview\bin\Release\peachview.exe
+E:\self\git\peachview\peachview\bin\Release\peachview.pdb
+E:\self\git\peachview\peachview\obj\Release\peachview.csprojResolveAssemblyReference.cache
+E:\self\git\peachview\peachview\obj\Release\MainWindow.baml
+E:\self\git\peachview\peachview\obj\Release\MainWindow.g.cs
+E:\self\git\peachview\peachview\obj\Release\App.g.cs
+E:\self\git\peachview\peachview\obj\Release\peachview_MarkupCompile.cache
+E:\self\git\peachview\peachview\obj\Release\peachview.g.resources
+E:\self\git\peachview\peachview\obj\Release\peachview.Properties.Resources.resources
+E:\self\git\peachview\peachview\obj\Release\peachview.csproj.GenerateResource.Cache
+E:\self\git\peachview\peachview\obj\Release\peachview.exe
+E:\self\git\peachview\peachview\obj\Release\peachview.pdb
