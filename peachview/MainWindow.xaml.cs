@@ -27,6 +27,7 @@ namespace peachview
         public MainWindow(string[] args)
         {
             this._args = args;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
 
@@ -45,8 +46,8 @@ namespace peachview
                 {
                     string parent = System.IO.Path.GetDirectoryName(this._args[0]);
                     _imgList = (from f in Directory.GetFiles(parent)
-                        where f.EndsWith(".jpg") || f.EndsWith(".jpeg") || f.EndsWith(".png") || f.EndsWith(".bmp")
-                        select f).ToArray();
+                                where f.EndsWith(".jpg") || f.EndsWith(".jpeg") || f.EndsWith(".png") || f.EndsWith(".bmp")
+                                select f).ToArray();
                     BitmapImage image = new BitmapImage(new Uri(this._args[0], UriKind.Absolute));
                     DisplayImage(image);
                 }
@@ -64,7 +65,8 @@ namespace peachview
             System.Drawing.Rectangle rct = screen.Bounds;
             this.Width = image.PixelWidth > rct.Width ? rct.Width : image.PixelWidth;
             this.Height = image.PixelHeight > rct.Height ? rct.Height : image.PixelHeight;
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            this.Top = (rct.Height - this.Height) / 2;
+            this.Left = (rct.Width - this.Width) / 2;
             this.Topmost = true;
         }
 
@@ -74,13 +76,13 @@ namespace peachview
             if (this._imgList == null || !this._imgList.Any()) return;
             if (e.Key == Key.Left)
             {
-                if (this._index <= 0 ) return;
+                if (this._index <= 0) return;
                 BitmapImage image = new BitmapImage(new Uri(this._imgList[--_index], UriKind.Absolute));
                 this.DisplayImage(image);
             }
-            else if(e.Key==Key.Right)
+            else if (e.Key == Key.Right)
             {
-                if (this._index >= this._imgList.Length-1) return;
+                if (this._index >= this._imgList.Length - 1) return;
                 BitmapImage image = new BitmapImage(new Uri(this._imgList[++_index], UriKind.Absolute));
                 this.DisplayImage(image);
             }

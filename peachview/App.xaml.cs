@@ -15,8 +15,14 @@ namespace peachview
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
             MainWindow myMainWindow = new MainWindow(e.Args);
             myMainWindow.Show();
+        }
+
+        void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show("请重试,出错了.", "呵呵", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
