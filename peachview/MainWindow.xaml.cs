@@ -30,15 +30,25 @@ namespace peachview
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             LoadConfig();
-            this.Width = ScreenSize.Width;
-            this.Height = ScreenSize.Height;
+            this.Width = ScreenSize.Width + SecendScreenSize.Width;
+            this.Height = SecendScreenSize.Height>ScreenSize.Height?SecendScreenSize.Height:ScreenSize.Height;
         }
 
         private Size ScreenSize
         {
             get
             {
-                System.Windows.Forms.Screen screen = Screen.PrimaryScreen;
+                System.Windows.Forms.Screen screen = Screen.AllScreens.First();
+                System.Drawing.Rectangle rct = screen.Bounds;
+                return new Size(rct.Width, rct.Height);
+            }
+        }
+
+        private Size SecendScreenSize
+        {
+            get
+            {
+                System.Windows.Forms.Screen screen = Screen.AllScreens.Last();
                 System.Drawing.Rectangle rct = screen.Bounds;
                 return new Size(rct.Width, rct.Height);
             }
@@ -152,7 +162,7 @@ namespace peachview
 
         private void MainWindow_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+            //this.DragMove();
         }
 
         private void ImgMain_OnMouseWheel(object sender, MouseWheelEventArgs e)
