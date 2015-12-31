@@ -141,6 +141,10 @@ namespace peachview
             }
             if (_isLoadConfig) return;
             var color = Configer.ReadByKey("bgcolor");
+            if (string.IsNullOrEmpty(color))
+            {
+                color = "128,128,128";
+            }
             string[] rgps = color.Split(',');
             try
             {

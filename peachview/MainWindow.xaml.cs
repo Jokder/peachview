@@ -154,6 +154,8 @@ namespace peachview
             }
             this.ImgMain.Height = this.ImgMain.ActualHeight + e.Delta;
             this.ImgMain.Width = this.ImgMain.Height / verPa;
+            this.CanvasImage.Height = this.ImgMain.Height;
+            this.CanvasImage.Width = this.ImgMain.Width;
             this.ImgMain.Stretch = Stretch.Uniform;
         }
     }
