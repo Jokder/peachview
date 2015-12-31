@@ -68,6 +68,7 @@ namespace peachview
         static void element_PreviewMouseDown(object sender,
                 System.Windows.Input.MouseButtonEventArgs e)
         {
+            e.Handled = true;
             // Ensure it's a framework element as we'll need to 
             // get access to the visual tree
             FrameworkElement element = sender as FrameworkElement;

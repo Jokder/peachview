@@ -57,8 +57,20 @@ namespace peachview
             {
                 alpha = 90.ToString();
             }
+            string allowDrag = Configer.ReadByKey("allowdrag");
             try
             {
+                if (string.IsNullOrEmpty(allowDrag))
+                {
+                    this.MouseLeftButtonDown -= MainWindow_OnMouseLeftButtonDown;
+                }
+                else
+                {
+                    if (!Convert.ToBoolean(allowDrag))
+                    {
+                        this.MouseLeftButtonDown -= MainWindow_OnMouseLeftButtonDown;
+                    }
+                }
                 this.Background =
                     new SolidColorBrush(Color.FromArgb(Convert.ToByte(255 * byte.Parse(alpha) / 100.0), byte.Parse(rgbs[0]),
                         byte.Parse(rgbs[1]), byte.Parse(rgbs[2])));
@@ -140,7 +152,7 @@ namespace peachview
 
         private void MainWindow_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //this.DragMove();
+            this.DragMove();
         }
 
         private void ImgMain_OnMouseWheel(object sender, MouseWheelEventArgs e)

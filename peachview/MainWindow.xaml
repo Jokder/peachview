@@ -5,6 +5,7 @@
         Title="PeachViewer" Height="350" Width="525" 
         WindowStyle="None" Background="{x:Null}" AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
         Icon="images/peach32-32.ico"
         Loaded="MainWindow_OnLoaded" 
         KeyUp="MainWindow_OnKeyUp"  

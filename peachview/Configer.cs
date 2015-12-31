@@ -11,6 +11,9 @@ namespace peachview
 {
     public static class Configer
     {
+        public delegate void ConfigChange(string key,string value);
+
+        public static event ConfigChange ConfigChangeEvent;
         private static string ConfigPath
         {
             get
@@ -79,6 +82,13 @@ namespace peachview
             _ConfContens.Add(key + "=" + value);
         SAVECONFIG:
             File.WriteAllLines(ConfigPath, _ConfContens);
+            OnConfigChangeEvent(key, value);
+        }
+
+        private static void OnConfigChangeEvent(string key, string value)
+        {
+            var handler = ConfigChangeEvent;
+            if (handler != null) handler(key, value);
         }
     }
 }

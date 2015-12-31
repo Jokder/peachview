@@ -53,13 +53,15 @@ namespace peachview
             {
                 alpha = 60.ToString();
             }
+            string allowDrag = Configer.ReadByKey("allowdrag");
             try
             {
+                this.CheckBoxMultiScreen.IsChecked = !string.IsNullOrEmpty(allowDrag) && Convert.ToBoolean(allowDrag);
                 this.TextBoxPa.Text = alpha;
                 this.LabelColor.Background =
                     new SolidColorBrush(Color.FromRgb(byte.Parse(rgbs[0]), byte.Parse(rgbs[1]), byte.Parse(rgbs[2])));
                 this.Background =
-                    new SolidColorBrush(Color.FromArgb(Convert.ToByte(255*byte.Parse(alpha)/100.0), byte.Parse(rgbs[0]),
+                    new SolidColorBrush(Color.FromArgb(Convert.ToByte(255 * byte.Parse(alpha) / 100.0), byte.Parse(rgbs[0]),
                         byte.Parse(rgbs[1]), byte.Parse(rgbs[2])));
             }
             catch
@@ -156,6 +158,11 @@ namespace peachview
             {
                 MessageBox.Show("配置文件出错了.", "呵呵", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void CheckBoxMultiScreen_OnChecked(object sender, RoutedEventArgs e)
+        {
+            Configer.SaveConf("allowdrag", this.CheckBoxMultiScreen.IsChecked.ToString());
         }
     }
 }
