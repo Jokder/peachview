@@ -29,9 +29,6 @@ namespace peachview
             this._args = args;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            LoadConfig();
-            this.Width = ScreenSize.Width;
-            this.Height = ScreenSize.Height;
         }
 
         private Size ScreenSize
@@ -41,43 +38,6 @@ namespace peachview
                 System.Windows.Forms.Screen screen = Screen.PrimaryScreen;
                 System.Drawing.Rectangle rct = screen.Bounds;
                 return new Size(rct.Width, rct.Height);
-            }
-        }
-
-        private void LoadConfig()
-        {
-            var color = Configer.ReadByKey("bgcolor");
-            if (string.IsNullOrEmpty(color))
-            {
-                color = "128,128,128";
-            }
-            string[] rgbs = color.Split(',');
-            var alpha = Configer.ReadByKey("bgalpha");
-            if (string.IsNullOrEmpty(alpha))
-            {
-                alpha = 90.ToString();
-            }
-            string allowDrag = Configer.ReadByKey("allowdrag");
-            try
-            {
-                if (string.IsNullOrEmpty(allowDrag))
-                {
-                    this.MouseLeftButtonDown -= MainWindow_OnMouseLeftButtonDown;
-                }
-                else
-                {
-                    if (!Convert.ToBoolean(allowDrag))
-                    {
-                        this.MouseLeftButtonDown -= MainWindow_OnMouseLeftButtonDown;
-                    }
-                }
-                this.Background =
-                    new SolidColorBrush(Color.FromArgb(Convert.ToByte(255 * byte.Parse(alpha) / 100.0), byte.Parse(rgbs[0]),
-                        byte.Parse(rgbs[1]), byte.Parse(rgbs[2])));
-            }
-            catch
-            {
-                MessageBox.Show("配置文件出错了.", "呵呵", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -115,18 +75,20 @@ namespace peachview
                 this.GifImage.GifSource = image.UriSource.AbsolutePath;
                 this.GifImage.Visibility = Visibility.Visible;
                 this.ImgMain.Visibility = Visibility.Collapsed;
-                this.CanvasGif.Width = image.Width;
-                this.CanvasGif.Height = image.Height;
+                this.Width = image.Width;
+                this.Height = image.Height;
             }
             else
             {
                 this.ImgMain.Source = image;
                 this.GifImage.Visibility = Visibility.Collapsed;
                 this.ImgMain.Visibility = Visibility.Visible;
-                this.CanvasImage.Width = image.Width;
-                this.CanvasImage.Height = image.Height;
+                this.Width = image.Width;
+                this.Height = image.Height;
             }
             this._normalSize = new Size(image.Width, image.Height);
+            this.Top = (ScreenSize.Height - this.Height) / 2;
+            this.Left = (ScreenSize.Width - this.Width) / 2;
             this.Title = image.UriSource.AbsolutePath;
             this.ImgMain.Stretch = Stretch.None;
             this.Topmost = true;
@@ -166,8 +128,10 @@ namespace peachview
             }
             this.ImgMain.Height = this.ImgMain.ActualHeight + e.Delta;
             this.ImgMain.Width = this.ImgMain.Height / verPa;
-            this.CanvasImage.Height = this.ImgMain.Height;
-            this.CanvasImage.Width = this.ImgMain.Width;
+            this.Height = this.ImgMain.Height;
+            this.Width = this.ImgMain.Width; 
+            this.Top = (ScreenSize.Height - this.Height) / 2;
+            this.Left = (ScreenSize.Width - this.Width) / 2;
             this.ImgMain.Stretch = Stretch.Uniform;
         }
     }
