@@ -27,8 +27,7 @@ namespace peachview
             }
             else
             {
-                ConfigWIndow configWIndow = new ConfigWIndow();
-                configWIndow.Show();
+                MessageBox.Show("没有要打开的图片.", "呵呵", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 #endif
         }
