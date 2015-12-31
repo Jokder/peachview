@@ -16,8 +16,21 @@ namespace peachview
         protected override void OnStartup(StartupEventArgs e)
         {
             Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
+#if DEBUG
             MainWindow myMainWindow = new MainWindow(e.Args);
             myMainWindow.Show();
+#else
+            if (e.Args.Length > 0)
+            {
+                MainWindow myMainWindow = new MainWindow(e.Args);
+                myMainWindow.Show();
+            }
+            else
+            {
+                ConfigWIndow configWIndow = new ConfigWIndow();
+                configWIndow.Show();
+            }
+#endif
         }
 
         void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

@@ -13,3 +13,5 @@ E:\self\git\peachview\peachview\obj\Release\peachview.exe
 E:\self\git\peachview\peachview\obj\Release\peachview.pdb
 E:\self\git\peachview\peachview\obj\Release\GeneratedInternalTypeHelper.g.cs
 E:\self\git\peachview\peachview\obj\Release\peachview_MarkupCompile.lref
+E:\self\git\peachview\peachview\obj\Release\ConfigWIndow.baml
+E:\self\git\peachview\peachview\obj\Release\ConfigWIndow.g.cs
